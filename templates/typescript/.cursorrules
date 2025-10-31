@@ -1,0 +1,93 @@
+# TypeScript Project Rules
+
+## Testing
+- ALWAYS run tests after generating or modifying code
+- Use Vitest for unit tests: `npm run test`
+- Run tests in watch mode during development: `npm run test:watch`
+- Minimum 80% coverage for new code
+- Tests must pass before committing
+- Colocate tests with source code in `__tests__/` folders or use `.test.ts` suffix
+
+## Package Management
+- Use npm ONLY (never yarn or pnpm)
+- Always commit package-lock.json
+- Run `npm install` after package.json changes
+- Check for vulnerabilities: `npm audit`
+
+## Code Style
+- Use TypeScript strict mode
+- Follow ESLint rules: `npm run lint`
+- Format with Prettier: `npm run format`
+- Run type checking: `npm run typecheck`
+- All quality checks must pass before committing
+
+## TypeScript Best Practices
+- Use explicit types for function parameters and return values
+- Prefer interfaces over type aliases for object shapes
+- Use `unknown` instead of `any` when type is truly unknown
+- Enable strict null checks
+- Use const assertions for literal types
+- Prefer `readonly` for immutable data
+
+## Module System
+- Use ES modules (import/export)
+- No CommonJS (require/module.exports) in new code
+- Use named exports for utilities
+- Use default export for main class/function
+- Organize imports: external, internal, types
+
+## Error Handling
+- Use custom error classes for domain errors
+- Include error context (userId, requestId, etc.)
+- Log errors with structured logging
+- Return explicit error types (Result<T, E> pattern)
+- Never swallow errors silently
+
+## Async/Await
+- Prefer async/await over raw promises
+- Always handle promise rejections
+- Use try/catch for error handling
+- Set timeouts for external calls
+- Use Promise.all for parallel operations
+
+## Documentation
+- Add JSDoc for all public APIs
+- Include examples in JSDoc
+- Update README.md for user-facing changes
+- Document complex algorithms
+- Explain non-obvious decisions
+
+## Security
+- Never commit secrets or API keys
+- Use environment variables for configuration
+- Validate all user inputs
+- Sanitize data before logging
+- Use parameterized queries for databases
+
+## Performance
+- Avoid unnecessary allocations in hot paths
+- Use streaming for large data
+- Implement caching where appropriate
+- Profile before optimizing
+- Set timeouts for external calls
+
+## Git Commits
+- Follow conventional commits format
+- Reference Linear/Jira issue in commit body
+- Keep commits focused and atomic
+- Write clear commit messages
+
+## Project-Specific Conventions
+- Entry point: `src/index.ts`
+- Build output: `dist/`
+- Test files: `src/**/__tests__/*.test.ts`
+- Types: `src/types/`
+
+## Quality Checklist Before PR
+- [ ] All tests pass
+- [ ] Coverage meets threshold (80%)
+- [ ] Linting passes
+- [ ] Type checking passes
+- [ ] Documentation updated
+- [ ] No console.log or debugging code
+- [ ] No TODOs without linked issues

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":updateNotScheduled",
+    ":automergeDisabled",
+    ":maintainLockFilesWeekly",
+    ":prConcurrentLimit10"
+  ],
+  "labels": ["dependencies"],
+  "assignees": ["@team/maintainers"],
+  "reviewers": ["@team/maintainers"],
+  "timezone": "America/New_York",
+  "schedule": ["before 9am on Monday"],
+  "prCreation": "immediate",
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 10,
+  "rebaseWhen": "behind-base-branch",
+  "ignoreDeps": [],
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates for low-risk dependencies",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackagePatterns": ["*"],
+      "excludePackagePatterns": [
+        "^@types/",
+        "typescript",
+        "react",
+        "react-dom",
+        "vue",
+        "angular"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash",
+      "platformAutomerge": true,
+      "matchCurrentVersion": "!/^0/",
+      "stabilityDays": 3
+    },
+    {
+      "description": "Group all patch updates together",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "all patch dependencies",
+      "groupSlug": "all-patch"
+    },
+    {
+      "description": "Group minor updates by package manager",
+      "matchUpdateTypes": ["minor"],
+      "matchPackagePatterns": ["*"],
+      "groupName": "all minor dependencies",
+      "groupSlug": "all-minor"
+    },
+    {
+      "description": "Major updates require human review",
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update"],
+      "automerge": false,
+      "prPriority": 10,
+      "commitMessagePrefix": "BREAKING:"
+    },
+    {
+      "description": "TypeScript updates (major and minor)",
+      "matchPackageNames": ["typescript"],
+      "groupName": "TypeScript",
+      "automerge": false,
+      "labels": ["dependencies", "typescript"],
+      "prPriority": 20
+    },
+    {
+      "description": "React ecosystem updates",
+      "matchPackageNames": ["react", "react-dom"],
+      "matchPackagePatterns": ["^@types/react"],
+      "groupName": "React",
+      "automerge": false,
+      "labels": ["dependencies", "react"]
+    },
+    {
+      "description": "Testing framework updates",
+      "matchPackagePatterns": [
+        "^vitest",
+        "^jest",
+        "^@testing-library/",
+        "^pytest",
+        "^playwright"
+      ],
+      "groupName": "Testing frameworks",
+      "automerge": false,
+      "labels": ["dependencies", "testing"]
+    },
+    {
+      "description": "Linting and formatting tools",
+      "matchPackagePatterns": [
+        "^eslint",
+        "^prettier",
+        "^ruff",
+        "^black",
+        "^mypy"
+      ],
+      "groupName": "Linting and formatting",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true,
+      "automergeType": "pr",
+      "labels": ["dependencies", "github-actions"],
+      "pinDigests": true
+    },
+    {
+      "description": "Security updates get high priority",
+      "matchUpdateTypes": ["patch"],
+      "matchDatasources": ["npm"],
+      "automerge": true,
+      "prPriority": 100,
+      "labels": ["dependencies", "security"]
+    },
+    {
+      "description": "Python dependencies",
+      "matchManagers": ["poetry"],
+      "labels": ["dependencies", "python"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "description": "Dev dependencies can auto-merge patch/minor",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "assignees": ["@team/security"],
+    "prPriority": 100
+  },
+  "npm": {
+    "minimumReleaseAge": "3 days"
+  },
+  "poetry": {
+    "fileMatch": ["(^|/)pyproject\\.toml$"]
+  },
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+  "prBodyDefinitions": {
+    "Notes": "## Release Notes\n\n{{{notes}}}",
+    "Changelogs": "## Changelogs\n\n{{{changelogs}}}"
+  },
+  "commitMessagePrefix": "chore(deps):",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{prettyNewMajor}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}",
+  "semanticCommits": "enabled",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 9am on Monday"]
+  }
+}

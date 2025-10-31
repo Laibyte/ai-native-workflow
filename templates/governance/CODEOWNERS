@@ -1,0 +1,93 @@
+# CODEOWNERS File
+# Define code ownership for automatic review assignment
+# Place in: .github/CODEOWNERS
+
+# Global Owners
+# These users/teams are the default owners for everything in the repository
+# unless a later match takes precedence
+* @org/core-team
+
+# Frontend Code
+/src/frontend/ @org/frontend-team
+/packages/ui/ @org/frontend-team
+/apps/web/ @org/frontend-team
+*.tsx @org/frontend-team
+*.jsx @org/frontend-team
+*.css @org/frontend-team
+*.scss @org/frontend-team
+/public/ @org/frontend-team
+
+# Backend Code
+/src/backend/ @org/backend-team
+/src/api/ @org/backend-team
+/src/services/ @org/backend-team
+/src/controllers/ @org/backend-team
+*.controller.ts @org/backend-team
+*.service.ts @org/backend-team
+
+# Database
+/migrations/ @org/database-team
+/prisma/ @org/database-team
+/src/models/ @org/database-team
+*.sql @org/database-team
+
+# Infrastructure & DevOps
+/infra/ @org/devops-team
+/terraform/ @org/devops-team
+/k8s/ @org/devops-team
+/docker/ @org/devops-team
+Dockerfile @org/devops-team
+docker-compose.yml @org/devops-team
+/.github/workflows/ @org/devops-team
+
+# Security
+/src/auth/ @org/security-team
+/src/middleware/auth*.ts @org/security-team
+/src/security/ @org/security-team
+SECURITY.md @org/security-team
+
+# Testing
+/__tests__/ @org/qa-team
+*.test.ts @org/qa-team
+*.test.tsx @org/qa-team
+*.spec.ts @org/qa-team
+*.test.py @org/qa-team
+/tests/ @org/qa-team
+/e2e/ @org/qa-team
+vitest.config.ts @org/qa-team
+jest.config.js @org/qa-team
+playwright.config.ts @org/qa-team
+
+# Documentation
+/docs/ @org/docs-team
+*.md @org/docs-team
+README.md @org/core-team @org/docs-team
+
+# Configuration Files
+package.json @org/core-team
+package-lock.json @org/core-team
+tsconfig.json @org/core-team
+.eslintrc.json @org/core-team
+.prettierrc.json @org/core-team
+pyproject.toml @org/core-team
+poetry.lock @org/core-team
+
+# CI/CD
+/.github/ @org/devops-team
+/.github/workflows/ @org/devops-team @org/core-team
+
+# Specific Critical Files (require additional review from leads)
+/src/payment/ @org/backend-team @tech-lead
+/src/billing/ @org/backend-team @tech-lead
+SECURITY.md @org/security-team @tech-lead
+
+# Examples:
+# Multiple owners (all must approve)
+# /critical-path/ @org/team1 @org/team2 @tech-lead
+
+# User-specific ownership
+# /experimental/ @username
+
+# Nested ownership (more specific paths override general ones)
+# /src/ @org/general-team
+# /src/critical/ @org/critical-team @tech-lead
