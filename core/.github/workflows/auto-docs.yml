@@ -1,0 +1,49 @@
+name: Auto-Update Docs
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push commit back to branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }} # Checkout the PR branch
+          fetch-depth: 0 # Need full history for diff
+
+      - name: Install Cursor CLI
+        run: |
+          curl https://cursor.com/install -fsS | bash
+          echo "$HOME/.cursor/bin" >> $GITHUB_PATH
+
+      - name: Configure git
+        run: |
+          git config user.name "Cursor Agent [CI]"
+          git config user.email "ci-agent@github-actions"
+
+      - name: Run Cursor Agent to update docs
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+        run: |
+          # Get the diff for the agent to analyze
+          git fetch origin ${{ github.base_ref }}
+          git diff origin/${{ github.base_ref }}...${{ github.head_ref }} -- > pr.diff
+
+          # Prompt the agent to update docs based on the diff
+          cursor-agent -p "You are an AI documentation writer. Analyze the code changes in @pr.diff. Based ONLY on these changes, update the @README.md to reflect any new features, API changes, or bug fixes. Do not add any new dependencies. Make your changes directly to the file."
+
+      - name: Commit and push changes
+        run: |
+          # Check if the agent made any changes
+          if [[ -n $(git status -s) ]]; then
+            git add README.md
+            git commit -m "docs: AI-generated doc updates"
+            git push
+          else
+            echo "No documentation changes were needed."
+          fi

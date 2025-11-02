@@ -1,0 +1,46 @@
+name: CI - Python (Poetry)
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true # Create.venv in project dir
+
+      - name: Cache Poetry virtualenv
+        id: cache-deps
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: pydeps-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache-deps.outputs.cache-hit!= 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Install project
+        run: poetry install --no-interaction
+
+      - name: Run Lint (Ruff)
+        run: poetry run ruff check.
+
+      - name: Run Formatter Check (Ruff)
+        run: poetry run ruff format --check.
+
+      - name: Run Tests (Pytest)
+        run: poetry run pytest

@@ -1,0 +1,9 @@
+---
+description: Enforces ESLint and Prettier for JS/TS projects.
+alwaysApply: false
+---
+# Code Quality (JS/TS)
+After every code modification, you MUST run the following commands and fix all errors:
+1. `npm run format`
+2. `npm run lint:fix`
+If lint errors remain, analyze them and correct the code.

@@ -1,0 +1,38 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write # Required for Cloudflare deployment
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --- Add Node.js/npm build steps here if needed ---
+      - name: Setup Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build # Assumes output dir is 'dist'
+
+      # --- Add Python/Poetry build steps here if needed ---
+      # (Add steps from 4.2 to install poetry, cache, and build)
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=your-project-name
+          # Replace 'dist' with your build output directory
+          # Replace 'your-project-name' with your Cloudflare Pages project name

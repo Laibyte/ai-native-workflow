@@ -1,0 +1,1 @@
+Critically review the code you just generated. Use the checklist from @.github/PULL_REQUEST_TEMPLATE.md as your guide. Identify any logical flaws, missed edge cases, security vulnerabilities, or deviations from the project rules in @AGENTS.md. Provide a summary of your findings and apply the necessary fixes.

@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+.venv/
+
+# Build outputs
+dist/
+build/
+.next/
+.parcel-cache/
+
+# Local configuration
+.env
+.env.local
+*.log
+.DS_Store
+
+# Large or irrelevant assets
+*.mp4
+*.zip
+large_dataset.csv

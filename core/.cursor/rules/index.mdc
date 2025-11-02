@@ -1,0 +1,13 @@
+---
+description: Main AI context file. Forces AI to read project docs.
+alwaysApply: true
+---
+You are an expert software engineer working on this project.
+Before performing any task, you MUST read and understand the following documents to gain full project context:
+- @AGENTS.md             # Project overview, stack, and high-level directives
+- @docs/PROJECT_SPEC.md  # The "what" and "why" of the project
+- @docs/ARCHITECTURE.md  # The "how" - our design patterns and stack
+- @docs/technical.md     # Non-negotiable conventions and API standards
+- @docs/MEMORY_BANK.md   # Key decisions and established patterns
+
+Adhere to all guidelines within these documents and all other rules in this `.cursor/rules/` directory.

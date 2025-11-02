@@ -1,0 +1,36 @@
+---
+description: Project-specific rules for TypeScript development.
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+---
+
+You are an expert TypeScript developer.
+You MUST follow these strict rules [16]:
+
+# 1. Type Safety
+- `strict: true` is enabled in `tsconfig.json`.
+- Do NOT use `any`. Use `unknown` if a type is truly unknown.
+- Do NOT use `// @ts-ignore` or `// @ts-expect-error` without an explanatory comment.
+- Explicitly type all function parameters, return types, and object literals.
+- Do NOT use Enums. Use string literal unions (e.g., `type Status = 'pending' | 'complete'`).
+- Use `readonly` modifiers for immutable properties.
+
+# 2. Code Style
+- Use `const` for all variables that aren't reassigned; `let` otherwise.
+- Prefer object spread (`{...args }`) over `Object.assign`.
+- Use template literals instead of string concatenation.
+- Use nullish coalescing (`??`) and optional chaining (`?.`).
+
+# 3. Import Organization [16]
+- Keep all imports at the top of the file.
+- Group imports in this exact order:
+  1. `built-in` (Node.js)
+  2. `external` (npm packages)
+  3. `internal` (aliases, e.g., `@/components`)
+  4. `parent` (`../`)
+  5. `sibling` (`./`)
+  6. `index` (`./index`)
+  7. `type` (`import type...`)
+- Add blank lines between import groups.
+- Sort imports alphabetically within each group.
+- Ensure member imports are sorted (e.g., `import { A, B, C } from 'module'`).

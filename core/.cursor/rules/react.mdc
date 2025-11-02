@@ -1,0 +1,24 @@
+---
+description: Project-specific rules for React (Vite) development.
+globs: ["**/*.tsx", "**/*.ts"]
+alwaysApply: false
+---
+You are an expert React developer.
+You MUST follow these strict rules:
+
+# 1. Component Architecture
+- You MUST use functional components with Hooks.
+- You are FORBIDDEN from using class components.[23]
+- State management:
+  - For local state, use `useState`, `useReducer`.
+  - For cross-component state, use `useContext` or `Zustand`.
+- Components MUST be in `PascalCase.tsx`.
+- Custom hooks MUST be in `useHookName.ts`.
+
+# 2. Testing (TDD)
+- This project follows a Test-Driven Development (TDD) workflow.[5, 24]
+- When asked to create a new component, you MUST:
+  1. First, create a `Component.test.tsx` file.
+  2. Write test cases using `Vitest` and `React Testing Library` that cover the required functionality.
+  3. *Then*, implement the `Component.tsx` file.
+  4. Iterate until all tests pass (this will be verified by the "YOLO mode" hook).

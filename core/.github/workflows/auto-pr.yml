@@ -1,0 +1,43 @@
+name: Auto-Create PR from AI Branch
+
+on:
+  push:
+    branches:
+      - 'ai-fix/**'
+      - 'ai-feat/**'
+      - 'ai-linear/**'
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get PR Body
+        id: get_pr_body
+        run: |
+          if; then
+            BODY=$(cat PR_DESCRIPTION.md)
+          else
+            BODY="AI-generated PR. No description provided by agent."
+          fi
+          # Escape newlines for the GitHub Action
+          BODY="${BODY//'%'/'%25'}"
+          BODY="${BODY//$'\n'/'%0A'}"
+          BODY="${BODY//$'\r'/'%0D'}"
+          echo "pr_body=$BODY" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: Create PR for AI branch"
+          title: "[AI] ${{ github.ref_name }}"
+          body: ${{ steps.get_pr_body.outputs.pr_body }}
+          branch: ${{ github.ref_name }}
+          base: main # Or your default branch
+          delete-branch: true # Clean up the branch after merge

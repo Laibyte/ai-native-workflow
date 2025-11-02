@@ -1,0 +1,44 @@
+name: Deploy (FastAPI to Cloudflare Worker)
+
+on:
+  push:
+    branches:
+      - main # Or your production branch
+    paths:
+      - 'src/api/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Export requirements.txt
+        # Cloudflare Workers/Vercel often need requirements.txt
+        run: poetry export -f requirements.txt --output requirements.txt --without-hashes
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Ensure your wrangler.toml is configured to point to your FastAPI app
+          # e.g., main = "src.api.main:app"

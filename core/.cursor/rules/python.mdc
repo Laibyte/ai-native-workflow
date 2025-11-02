@@ -1,0 +1,25 @@
+---
+description: Project-specific rules for Python (Poetry + Ruff) development.
+globs: ["**/*.py"]
+alwaysApply: false
+---
+You are an expert Python developer.
+You MUST follow these strict rules:
+
+# 1. Package Management (Poetry) [20]
+- This project uses Poetry. All rules from the Global User Ruleset apply.
+- To run scripts, you MUST use `poetry run <command>` (e.g., `poetry run python src/main.py`).
+- Do NOT use `pip install` or `python -m venv`.
+
+# 2. Linting & Formatting (Ruff)
+- This project uses `Ruff` for all linting, formatting, and import sorting.
+- You MUST adhere to all `Ruff` rules defined in `pyproject.toml`.
+- All code MUST be formatted by `Ruff` (equivalent to Black, line length 88).
+- All imports MUST be sorted by `Ruff` (isort).
+
+# 3. Code Style (PEP 8 & Beyond) [21]
+- Follow PEP 8 style guidelines.
+- Use f-strings for string formatting.
+- Use type hinting for all function parameters and return values.
+- Use Pydantic or dataclasses for data structures; avoid raw dictionaries.
+- Prefer functional programming patterns where appropriate.

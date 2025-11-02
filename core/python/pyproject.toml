@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "python-poetry-boilerplate"
+version = "0.1.0"
+description = ""
+authors =
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+ruff = "^0.4.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# --- Ruff Configuration (Linting + Formatting) ---
+[tool.ruff]
+line-length = 88
+select =
+ignore = ["E501"] # Handled by formatter
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"] # Adjust if your main module is named differently
+
+# --- Pytest Configuration ---
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

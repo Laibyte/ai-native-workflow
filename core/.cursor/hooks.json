@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "comment": "Enforce package manager rules (npm/poetry)",
+        "command": "bun .cursor/hooks/enforce-tools.ts"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "comment": "Auto-lint/fix TS/TSX files",
+        "command": "bun .cursor/hooks/lint-fix.ts"
+      },
+      {
+        "comment": "Auto-lint/format Python files",
+        "command": "poetry run python .cursor/hooks/format-fix.py"
+      }
+    ],
+    "stop": [
+      {
+        "comment": "Auto-checkpoint work when agent stops",
+        "command": "git add . && git commit -m 'AI: Checkpoint work from agent prompt'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+https://enlightby.ai/projects/36
+https://github.com/modelcontextprotocol/servers/tree/main/src/memory
+
+1. [Sequential Thinking MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking) – Breaks down complex problems into manageable steps, enabling structured problem-solving. Ideal for system design planning, architectural decisions, and refactoring strategies.
+2. [Puppeteer MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer) – Navigate websites, take screenshots, and interact with web pages. Makes a big difference in UI testing and automation.
+3. [Memory Bank MCP](https://ui.nanda-registry.com/servers/fe9c7d80-7f3f-495f-8406-7ef7a5667495) – A must-have for complex projects. Organizes project knowledge hierarchically, helping AI better understand your project’s structure and goals. This MCP automates the creation of a memory bank for your project.
+4. [Playwright MCP](https://github.com/microsoft/playwright-mcp) – Critical for cross-browser testing and advanced web automation. A modern, feature-rich alternative to Puppeteer.
+5. [GitHub MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/github) – Saves time by eliminating context switching between your environment and GitHub. Allows you to manage repositories, modify content, work with issues and pull requests, and more—all within your workflow.
+6. [Knowledge Graph Memory MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/memory) – Crucial for maintaining project context across sessions. Prevents repetition and ensures the AI retains key project details.
+7. [DuckDuckGo MCP](https://github.com/nickclyde/duckduckgo-mcp-server) – Lightweight web search tool for accessing current documentation, error solutions, and up-to-date information without leaving your environment. Doesn’t require an API key—unlike many alternatives.
+8. [MCP Compass](https://github.com/liuyoshio/mcp-compass) – Your guide through the growing MCP ecosystem. Helps you discover the right tools for specific tasks using simple natural language queries.
