@@ -1,0 +1,1 @@
+This is a repo containing multiple boilerplate templates of different dev environment for different purposes. The idea is to be able with a simple command, setup the AI-native env/project and start developing side by side with the AI assistent.
