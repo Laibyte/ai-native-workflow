@@ -1,0 +1,20 @@
+[project]
+name = "python-template"
+version = "0.1.0"
+description = "Boilerplate template to use as a starter for any new python project"
+authors = [
+    {name = "Ali Alfredji",email = "alfredjiali@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ruff (>=0.14.3,<0.15.0)",
+    "mypy (>=1.18.2,<2.0.0)",
+    "pytest (>=8.4.2,<9.0.0)",
+    "pre-commit (>=4.3.0,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
