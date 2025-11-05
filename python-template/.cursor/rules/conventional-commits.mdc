@@ -5,7 +5,7 @@ description: "Enforces Conventional Commits format for all Git commit messages."
 
 # Git Commit Message Standard
 
-All Git commit messages MUST follow the Conventional Commits specification. The AI-generated "sparkle" (✨) commit message feature will adhere to this.
+All Git commit messages MUST follow the Conventional Commits specification
 
 # Format:
 <type>[optional scope]: <description>

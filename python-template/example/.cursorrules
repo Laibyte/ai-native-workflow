@@ -1,0 +1,55 @@
+# Python Development Rules
+
+## Code Style
+- Use Python 3.11+ features
+- Follow PEP 8, PEP 257 (docstrings)
+- Use type hints everywhere
+- Maximum line length: 100 characters
+- Use double quotes for strings
+- Use pathlib instead of os.path
+
+## Type Hints
+- All functions must have type hints
+- Use modern type hints (list[str] instead of List[str])
+- Use typing.Protocol for structural subtyping
+- Use typing.Final for constants
+
+## Error Handling
+- Use specific exceptions, not bare except
+- Always include error messages
+- Use contextlib for resource management
+
+## Testing
+- Write tests for all new functions
+- Use pytest fixtures
+- Aim for 80%+ code coverage
+- Use parametrize for multiple test cases
+
+## Documentation
+- All modules, classes, and functions need docstrings
+- Use Google-style docstrings
+- Include type information in docstrings
+- Document exceptions raised
+
+## Security
+- No hardcoded secrets
+- Use environment variables for configuration
+- Validate all external inputs
+- Use bandit security checks
+
+## Imports
+- Standard library first
+- Third-party second
+- Local imports last
+- Use absolute imports
+
+## Tools
+- Run ruff check and format on save
+- Run mypy before committing
+- Run pytest before pushing
+- Use pre-commit hooks
+
+## Commit Messages
+- Use conventional commits format
+- Types: feat, fix, docs, style, refactor, test, chore
+- Example: "feat: add user authentication"

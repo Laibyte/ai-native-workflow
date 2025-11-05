@@ -1,0 +1,47 @@
+---
+description: Project-specific standards and conventions
+alwaysApply: true
+---
+
+# Project-Specific Standards
+
+## Project Structure
+
+src/my_project/  # All source code here
+tests/           # All tests here
+
+## Documentation
+- All modules MUST have module docstrings
+- All classes MUST have class docstrings
+- All public functions MUST have docstrings
+- Use Google-style docstrings
+
+```python
+def function_name(param1: str, param2: int) -> bool:
+    """Short description on one line.
+
+    Longer description if needed.
+
+    Args:
+        param1: Description of param1
+        param2: Description of param2
+
+    Returns:
+        Description of return value
+
+    Raises:
+        ValueError: When param1 is empty
+
+    Examples:
+        >>> function_name("test", 5)
+        True
+    """
+```
+
+## Before Submitting Code
+
+1.	Run ⁠poetry run poe format - Format code
+2.	Run ⁠poetry run poe lint-fix - Fix linting issues
+3.	Run ⁠poetry run poe type-check - Check types
+4.	Run ⁠poetry run poe test - Run tests
+5.	Ensure coverage >= 80%

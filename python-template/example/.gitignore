@@ -27,11 +27,14 @@ htmlcov/
 .tox/
 coverage.xml
 *.cover
+.hypothesis/
 
 # Type checking
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.pyre/
+.pytype/
 
 # Ruff
 .ruff_cache/
@@ -43,6 +46,7 @@ ENV/
 env/
 
 # IDEs
+.vscode/
 .idea/
 *.swp
 *.swo
@@ -52,8 +56,8 @@ env/
 .DS_Store
 Thumbs.db
 
+# Poetry
+poetry.lock
+
 # Coverage
 .coverage.*
-
-# Cursor hooks logs
-.cursor/hooks.log
