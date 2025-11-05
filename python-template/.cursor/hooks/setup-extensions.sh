@@ -3,22 +3,15 @@
 
 set -e
 
-EXTENSIONS_FILE=".vscode/extensions.json"
-
-# Check if extensions.json exists
-if [ ! -f "$EXTENSIONS_FILE" ]; then
-  echo "❌ No extensions.json found at $EXTENSIONS_FILE"
-  exit 1
-fi
-
-# Determine which command to use (code for VSCode, cursor for Cursor)
+# Determine which IDE is being used
 CMD=""
+IDE_NAME=""
 if command -v cursor &> /dev/null; then
   CMD="cursor"
-  echo "📦 Installing Cursor extensions..."
+  IDE_NAME="Cursor"
 elif command -v code &> /dev/null; then
   CMD="code"
-  echo "📦 Installing VSCode extensions..."
+  IDE_NAME="VSCode"
 else
   echo "⚠️  Neither 'cursor' nor 'code' command found."
   echo "💡 Extensions must be installed manually from the IDE:"
@@ -26,6 +19,31 @@ else
   echo "   - Search 'Extensions: Show Recommended Extensions'"
   echo "   - Click 'Install All'"
   exit 0
+fi
+
+# Find extensions.json file (Cursor can use .cursor/ or .vscode/, VSCode uses .vscode/)
+EXTENSIONS_FILE=""
+if [ "$IDE_NAME" = "Cursor" ]; then
+  # Cursor: prioritize .cursor/extensions.json, fallback to .vscode/extensions.json
+  if [ -f ".cursor/extensions.json" ]; then
+    EXTENSIONS_FILE=".cursor/extensions.json"
+    echo "📦 Installing Cursor extensions from .cursor/extensions.json..."
+  elif [ -f ".vscode/extensions.json" ]; then
+    EXTENSIONS_FILE=".vscode/extensions.json"
+    echo "📦 Installing Cursor extensions from .vscode/extensions.json..."
+  else
+    echo "❌ No extensions.json found in .cursor/ or .vscode/"
+    exit 1
+  fi
+else
+  # VSCode: only use .vscode/extensions.json
+  if [ -f ".vscode/extensions.json" ]; then
+    EXTENSIONS_FILE=".vscode/extensions.json"
+    echo "📦 Installing VSCode extensions from .vscode/extensions.json..."
+  else
+    echo "❌ No extensions.json found at .vscode/extensions.json"
+    exit 1
+  fi
 fi
 
 # Extract extension IDs from extensions.json using Python

@@ -85,6 +85,22 @@ else
   echo "💡 Run: poetry run poe lint-fix && poetry run poe format"
 fi
 
+# Install IDE extensions (if IDE available)
+echo ""
+if [ -f ".cursor/hooks/setup-extensions.sh" ]; then
+  echo "🔌 Installing IDE extensions..."
+  # Temporarily disable exit on error for extension installation
+  set +e
+  bash .cursor/hooks/setup-extensions.sh
+  EXTENSION_EXIT_CODE=$?
+  set -e
+  if [ $EXTENSION_EXIT_CODE -eq 0 ]; then
+    echo "✅ Extension installation complete"
+  else
+    echo "⚠️  Extension installation skipped or failed (this is okay)"
+  fi
+fi
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "✅ Setup complete! Your environment is ready."
@@ -103,6 +119,6 @@ echo "   make all           # Run all checks"
 echo ""
 echo "🎯 Next steps:"
 echo "   1. Open project in Cursor/VSCode"
-echo "   2. Install recommended extensions (you'll be prompted)"
+echo "   2. Restart IDE to activate extensions (if installed)"
 echo "   3. Start coding with AI assistance!"
 echo ""

@@ -33,8 +33,11 @@ cd my-project
 bash .cursor/hooks/setup.sh
 
 # This will:
+# - Check prerequisites (Poetry, Python 3.11+)
+# - Install jq (required for Cursor hooks)
+# - Setup Cursor hooks directory and make scripts executable
 # - Install Poetry dependencies
-# - Install pre-commit hooks
+# - Install pre-commit hooks (including commit-msg hook)
 # - Setup detect-secrets baseline
 # - Run initial quality checks
 # - Install VSCode/Cursor extensions (if IDE available)
@@ -137,12 +140,25 @@ poetry run pre-commit run --all-files
 
 ## IDE Setup
 
+### IDE Support
+
+This project supports both **Cursor IDE** and **VSCode**:
+
+- **Cursor IDE**: The setup script automatically detects Cursor and prioritizes `.cursor/` configuration files
+- **VSCode**: Falls back to `.vscode/` configuration files
+- Both IDEs can use the same extensions (Cursor uses VSCode-compatible extensions)
+
 ### Automatic Extension Installation
 
-The setup script will attempt to install recommended extensions automatically. If you skipped this or want to install them manually:
+The setup script will automatically detect your IDE and install recommended extensions:
+
+- **Cursor**: Looks for `.cursor/extensions.json` first, then falls back to `.vscode/extensions.json`
+- **VSCode**: Uses `.vscode/extensions.json`
+
+If you skipped this or want to install them manually:
 
 ```bash
-# Auto-install extensions
+# Auto-install extensions (detects IDE automatically)
 bash .cursor/hooks/setup-extensions.sh
 ```
 
@@ -166,17 +182,22 @@ If automatic installation doesn't work:
 2. Type "Extensions: Show Recommended Extensions"
 3. Click "Install All"
 
-Or install individually:
+Or install individually (use `cursor` command if using Cursor IDE):
 ```bash
+# For Cursor IDE
+cursor --install-extension charliermarsh.ruff
+cursor --install-extension ms-python.python
+cursor --install-extension ms-python.vscode-pylance
+cursor --install-extension ms-python.mypy-type-checker
+cursor --install-extension tamasfe.even-better-toml
+cursor --install-extension streetsidesoftware.code-spell-checker
+cursor --install-extension usernamehw.errorlens
+cursor --install-extension aaron-bond.better-comments
+cursor --install-extension eamodio.gitlens
+
+# For VSCode (use 'code' instead of 'cursor')
 code --install-extension charliermarsh.ruff
-code --install-extension ms-python.python
-code --install-extension ms-python.vscode-pylance
-code --install-extension ms-python.mypy-type-checker
-code --install-extension tamasfe.even-better-toml
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension usernamehw.errorlens
-code --install-extension aaron-bond.better-comments
-code --install-extension eamodio.gitlens
+# ... etc
 ```
 
 ### AI Assistant Integration

@@ -29,17 +29,7 @@ init-secrets:
 	@echo "✅ Secrets baseline created"
 
 setup:
-	@echo "🚀 Setting up project..."
-	poetry install
-	@chmod +x .cursor/hooks/*.sh 2>/dev/null || true
-	poetry run pre-commit install
-	poetry run pre-commit install --hook-type commit-msg
-	@if [ ! -f ".secrets.baseline" ]; then \
-		echo "🔒 Initializing detect-secrets baseline..."; \
-		poetry run detect-secrets scan > .secrets.baseline; \
-		echo "✅ Secrets baseline created"; \
-	fi
-	@echo "✅ Setup complete! Start coding."
+	@bash .cursor/hooks/setup.sh
 
 test:
 	poetry run pytest
