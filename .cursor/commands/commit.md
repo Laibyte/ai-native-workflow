@@ -44,7 +44,7 @@ chore(deps): upgrade react to v18.2.0
 * Scope: optional, use component/module name
 
 4. **Show commands**: Display the commit command that will be executed
-5. **Ask for approval**: Wait for explicit "yes" or "y" before committing
+5. **Ask for approval**: Wait for explicit "yes" or "y" before committing. If the user request to skip approval move on the the next step.
 6. **Commit**: If approved, run `git commit -m "<message>"`
 7. **Push**: After successful commit, run `git push` to remote branch. If remote is not setup, configure it first with `git push --set-upstream origin <branch-name>` or `git push -u origin <branch-name>`
 
