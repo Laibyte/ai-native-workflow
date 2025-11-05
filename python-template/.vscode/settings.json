@@ -91,6 +91,6 @@
       "/^pytest-cov .*/": true,
       "/^pytest-asyncio .*/": true,
       "/^pytest-xdist .*/": true,
-      "/^make .*/": true,
+      "/^make .*/": true
     }
   }

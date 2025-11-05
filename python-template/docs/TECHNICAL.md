@@ -240,4 +240,3 @@ poetry run mypy src/  # Run mypy directly
 - [mypy Documentation](https://mypy.readthedocs.io/)
 - [pytest Documentation](https://docs.pytest.org/)
 - [pre-commit Documentation](https://pre-commit.com/)
-

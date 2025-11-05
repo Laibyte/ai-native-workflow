@@ -294,10 +294,10 @@ poetry add <package-name> --group dev
 def test_function_happy_path():
     # Arrange
     input_data = ...
-    
+
     # Act
     result = function(input_data)
-    
+
     # Assert
     assert result == expected
 ```
@@ -355,4 +355,3 @@ def test_function_happy_path():
 - [Ruff Documentation](https://docs.astral.sh/ruff/)
 - [mypy Documentation](https://mypy.readthedocs.io/)
 - [pytest Best Practices](https://docs.pytest.org/en/stable/goodpractices.html)
-

@@ -69,11 +69,11 @@ Each entry should follow this structure:
 
 **Status**: Accepted
 
-**Context**: 
+**Context**:
 
 The Python template project had fragmented AI assistant configuration, duplicate tooling setup, and incomplete documentation structure. Files were scattered across `.cursor/`, `.github/`, and `.vscode/` with overlapping responsibilities and inconsistent patterns.
 
-**Decision**: 
+**Decision**:
 
 Implemented a comprehensive unification of the AI-native workflow across 6 phases:
 
@@ -147,13 +147,13 @@ Trade-offs:
 
 1. **Keep separate configs for each AI tool**
    - Rejected: Creates maintenance burden and inconsistency
-   
+
 2. **Use Black + isort + flake8 instead of Ruff**
    - Rejected: Ruff is 10-100x faster and replaces all three
-   
+
 3. **Manual extension installation**
    - Rejected: Automated setup provides better developer experience
-   
+
 4. **Cursor hooks run linters directly**
    - Rejected: Duplicates pre-commit logic; pre-commit is the single authority
 
@@ -174,4 +174,3 @@ Trade-offs:
 ---
 
 <!-- Add your decisions below this line -->
-

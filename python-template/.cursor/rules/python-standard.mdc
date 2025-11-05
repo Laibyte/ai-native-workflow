@@ -106,10 +106,10 @@ def test_function_happy_path() -> None:
     """Test function with valid input."""
     # Arrange
     input_data = "test"
-    
+
     # Act
     result = function(input_data)
-    
+
     # Assert
     assert result == expected
 ```

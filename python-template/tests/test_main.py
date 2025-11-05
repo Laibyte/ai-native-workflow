@@ -1,7 +1,6 @@
 """Tests for the main module."""
 
 import pytest
-
 from src.main import MESSAGE, greet
 
 

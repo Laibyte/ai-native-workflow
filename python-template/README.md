@@ -89,7 +89,7 @@ poetry run poe clean         # Clean up generated files
 my-project/
 ├── src/                     # Source code
 │   ├── __init__.py
-│   └── main.py         
+│   └── main.py
 ├── tests/                   # Tests
 │   ├── __init__.py
 │   └── test_main.py
@@ -114,7 +114,7 @@ my-project/
 ### Commit Messages
 
 This project enforces [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
-```bash 
+```bash
 git commit -m "feat: add new feature"
 git commit -m "fix: resolve bug in authentication"
 git commit -m "docs: update README"

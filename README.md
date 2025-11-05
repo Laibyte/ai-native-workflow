@@ -18,7 +18,7 @@ commands
 - setup-tests
 
 rules
-- index.mdc 
+- index.mdc
 - bash.mdc
 - conventional-commit.mdc
 - pull-request.mdc
@@ -36,7 +36,7 @@ rules
 
 mcp.json
 - Perplexity
-- firecrawl 
+- firecrawl
 - git
 - Github
 - Context7
@@ -162,7 +162,3 @@ Interactive template selector
 - Cloudflare Pages template
 - Rapid prototype template
 - GitHub Pages static site template
-
-
-
-

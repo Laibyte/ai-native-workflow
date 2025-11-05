@@ -167,4 +167,3 @@ git commit -m "chore: update poetry lock file"
 - [Poetry in CI/CD](https://python-poetry.org/docs/ci/)
 - [Pre-commit CI](https://pre-commit.ci/)
 - [Codecov Documentation](https://docs.codecov.com/)
-

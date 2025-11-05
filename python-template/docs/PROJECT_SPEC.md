@@ -313,4 +313,3 @@
 - [TECHNICAL.md](./TECHNICAL.md): Technical stack and tools
 - [MEMORY_BANK.md](./MEMORY_BANK.md): Key decisions and their rationale
 - [CHANGELOG.md](./CHANGELOG.md): Version history
-

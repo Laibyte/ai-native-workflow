@@ -57,7 +57,7 @@ FAILED=0
 
 while IFS= read -r extension; do
   echo -n "  - $extension ... "
-  
+
   # Check if already installed
   if $CMD --list-extensions 2>/dev/null | grep -qi "^$extension$"; then
     echo "✅ already installed"
@@ -85,4 +85,3 @@ fi
 
 echo ""
 echo "🎯 Recommended: Restart your IDE to activate all extensions"
-

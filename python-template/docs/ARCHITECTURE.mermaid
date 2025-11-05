@@ -46,47 +46,47 @@ graph TB
     AI -->|assists| IDE
     IDE -->|edits| SRC
     IDE -->|creates| TESTS
-    
+
     %% Configuration Links
     PYPROJECT -.configures.-> RUFF
     PYPROJECT -.configures.-> MYPY
     PYPROJECT -.configures.-> PYTEST
     PYPROJECT -.configures.-> BANDIT
-    
+
     VSCODE -.configures.-> IDE
     CURSOR -.guides.-> AI
-    
+
     %% Quality Checks
     SRC -->|analyzed by| RUFF
     SRC -->|checked by| MYPY
     SRC -->|scanned by| BANDIT
     SRC -->|secured by| SECRETS
     TESTS -->|runs with| PYTEST
-    
+
     %% Automation Flow
     PRECOMMIT -->|triggers| HOOKS
     HOOKS -->|runs| RUFF
     HOOKS -->|runs| MYPY
     HOOKS -->|runs| BANDIT
     HOOKS -->|runs| SECRETS
-    
+
     CI -->|runs on push| PYTEST
     CI -->|validates| RUFF
     CI -->|checks| MYPY
-    
+
     DEPENDABOT -->|updates| PYPROJECT
-    
+
     %% Documentation Flow
     DEV -->|documents| README
     DEV -->|records decisions| MEMORY
     DEV -->|updates| CHANGELOG
-    
+
     classDef devClass fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef toolClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef configClass fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef autoClass fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     classDef docClass fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    
+
     class DEV,IDE,AI devClass
     class RUFF,MYPY,PYTEST,BANDIT,SECRETS toolClass
     class PYPROJECT,PRECOMMIT,VSCODE,CURSOR configClass
@@ -150,4 +150,3 @@ graph TB
 - `.cursor/` guides AI assistants
 - `.pre-commit-config.yaml` defines pre-commit hooks
 - GitHub Actions workflows define CI/CD pipeline
-

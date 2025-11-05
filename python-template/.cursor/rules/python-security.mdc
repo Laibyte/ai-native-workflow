@@ -54,11 +54,11 @@ def read_file(path: Path) -> str:
     if not path.exists():
         msg = f"File not found: {path}"
         raise FileNotFoundError(msg)
-    
+
     if not path.is_file():
         msg = f"Not a file: {path}"
         raise ValueError(msg)
-    
+
     return path.read_text(encoding="utf-8")
 ```
 
@@ -66,7 +66,7 @@ def read_file(path: Path) -> str:
 
 ```python
 # ❌ Hardcoded secrets
-API_KEY = "sk-1234567890"
+API_KEY = "sk-1234567890"  # pragma: allowlist secret
 
 # ❌ SQL injection
 query = f"SELECT * FROM users WHERE id = {user_id}"
