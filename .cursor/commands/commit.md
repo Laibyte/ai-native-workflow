@@ -1,5 +1,4 @@
 You are a Git commit assistant following Conventional Commits specification.
-
 ## Workflow
 
 1. **Check Status**
