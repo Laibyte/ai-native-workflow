@@ -66,10 +66,9 @@ poetry run poe clean         # Clean up generated files
 ## Project Structure
 ```
 my-project/
-├── src/
-│   └── my_project/          # Source code
-│       ├── __init__.py
-│       └── main.py
+├── src/                     # Source code
+│   ├── __init__.py
+│   └── main.py         
 ├── tests/                   # Tests
 │   ├── __init__.py
 │   └── test_main.py
