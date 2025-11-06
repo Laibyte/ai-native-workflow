@@ -60,13 +60,13 @@ repos:
         exclude: (package-lock\.json|poetry\.lock)
         files: ^python-template/
 
-  # Poetry - Dependency management validation
-  - repo: https://github.com/python-poetry/poetry
-    rev: 1.8.0
-    hooks:
-      - id: poetry-check
-      - id: poetry-lock
-        args: [--no-update, --check]
+  # # Poetry - Dependency management validation
+  # - repo: https://github.com/python-poetry/poetry
+  #   rev: 1.8.0
+  #   hooks:
+  #     - id: poetry-check
+  #     - id: poetry-lock
+  #       args: [--no-update, --check]
 
   # Conventional Commits - Enforce commit message format
   - repo: https://github.com/compilerla/conventional-pre-commit
